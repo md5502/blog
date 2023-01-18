@@ -133,6 +133,9 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
 }
 
 AUTH_USER_MODEL = 'api.UserAccount'
@@ -153,5 +156,13 @@ DJOSER = {
         'user_create': 'api.serializers.UserCreateSerializer',
         'user': 'api.serializers.UserCreateSerializer',
         'user_delete': 'djoser.serializers.UserDeleteSerializer',
+    },
+    'PERMISSIONS': {
+        'set_password': ['api.permissions.IsSuperUser'],
+        'set_username': ['api.permissions.IsSuperUser'],
+        'user_delete': ['api.permissions.IsSuperUser'],
+        'user': ['api.permissions.IsSuperUser'],
+        'users_list': ['api.permissions.IsSuperUser'],
+        'token_destroy': ['rest_framework.permissions.IsAuthenticated'],
     }
 }

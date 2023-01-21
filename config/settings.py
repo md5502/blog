@@ -33,7 +33,8 @@ INSTALLED_APPS = [
     'djoser',
 
     # local
-    'api'
+    'api',
+    'blog'
 ]
 
 MIDDLEWARE = [
@@ -166,3 +167,6 @@ DJOSER = {
         'token_destroy': ['rest_framework.permissions.IsAuthenticated'],
     }
 }
+MEDIA_ROOT = BASE_DIR / 'media'
+
+MEDIA_URL = '/media/'
